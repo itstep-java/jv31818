@@ -4,11 +4,8 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        Connection connection = DriverManager.getConnection(
-            "jdbc:mysql://remotemysql.com:3306/jijjN3qVrQ",
-            "jijjN3qVrQ",
-            "UDi2DTvyg7"
-        );
+        Database db = new Database();
+        Connection connection = db.getConnection();
         PreparedStatement statement = connection.prepareStatement(
             "SELECT id, name FROM department0 WHERE id = ?"
         );

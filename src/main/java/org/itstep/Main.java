@@ -5,8 +5,7 @@ import java.sql.*;
 public class Main {
     public static void main(String[] args) throws SQLException {
         Database db = new Database();
-        Connection connection = db.getConnection();
-        PreparedStatement statement = connection.prepareStatement(
+        PreparedStatement statement = db.prepare(
             "SELECT id, name FROM department0 WHERE id = ?"
         );
 
@@ -23,6 +22,6 @@ public class Main {
             }
         }
 
-        connection.close();
+        db.close();
     }
 }

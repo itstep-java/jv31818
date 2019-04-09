@@ -1,8 +1,6 @@
 package org.itstep;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Database {
     private final String host = "remotemysql.com";
@@ -23,5 +21,21 @@ public class Database {
         }
 
         return connection;
+    }
+
+    public void close() throws SQLException {
+        if (null != connection) {
+            connection.close();
+        }
+    }
+
+    public void execute(String query) throws SQLException {
+        Statement statement = getConnection().createStatement();
+        statement.execute(query);
+        statement.close();
+    }
+
+    public PreparedStatement prepare(String query) throws SQLException {
+        return getConnection().prepareStatement(query);
     }
 }

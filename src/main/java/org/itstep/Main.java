@@ -7,6 +7,8 @@ public class Main {
         Database db = new Database();
         EmployeeRepository repository = new EmployeeRepository(db);
         repository.create("Иванов", "Иван", "CIO");
+        repository.update(32, "Иванов", "Иван");
+        repository.delete(32);
         db.close();
     }
 }
